@@ -1,24 +1,16 @@
-# README
+# Flight Booker
+Created as part of [The Odin Project](https://www.theodinproject.com) curriculum.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+View on [Github](https://github.com/harmolipi/odin-flight-booker).
 
-Things you may want to cover:
+### Functionality
 
-* Ruby version
+This is the [Flight Booker Project](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby-on-rails/lessons/flight-booker) project, where I m creating more advanced forms by building a typical checkout process for booking a one-way flight.
 
-* System dependencies
+### Thoughts
 
-* Configuration
+Tbd...
 
-* Database creation
+God bless.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+-Niko Birbilis
