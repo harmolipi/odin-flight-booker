@@ -1,0 +1,22 @@
+<% if !flights.empty? %>
+  <table class="table is-striped is-fullwidth is-hoverable">
+    <thead>
+      <tr>
+        <th>From</th>
+        <th>To</th>
+        <th>Departure</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% flights.each do |flight| %>
+        <tr>
+          <td><%= flight.from_airport.code %></td>
+          <td><%= flight.to_airport.code %></td>
+          <td><%= flight.departure_date.to_formatted_s(:long) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No flights found! Try a different search.</p>
+<% end %>
