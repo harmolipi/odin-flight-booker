@@ -18,7 +18,16 @@ DURATIONS = {
   }
 }.freeze
 
-current_time = Time.now
 Airport.create([{ code: 'SFO' }, { code: 'NYC' }])
-Flight.create(from_airport: Airport.first, to_airport: Airport.last, duration: DURATIONS[:SFO][:JFK], departure: current_time)
-Flight.create(from_airport: Airport.last, to_airport: Airport.first, duration: DURATIONS[:JFK][:SFO], departure: current_time + 7.days)
+
+10.times do
+  departure = Airport.all.sample
+  arrival = departure == Airport.first ? Airport.last : Airport.first
+  Flight.create(
+    from_airport: departure,
+    to_airport: arrival,
+    duration: DURATIONS.dig(departure, arrival),
+    departure_date: DateTime.now + rand(7),
+    departure_time: Time.now + rand(60 * 60 * 24)
+  )
+end
