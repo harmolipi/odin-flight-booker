@@ -4,7 +4,9 @@
       <tr>
         <th>From</th>
         <th>To</th>
-        <th>Departure</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Book</th>
       </tr>
     </thead>
     <tbody>
@@ -12,11 +14,23 @@
         <tr>
           <td><%= flight.from_airport.code %></td>
           <td><%= flight.to_airport.code %></td>
-          <td><%= flight.departure_date.to_formatted_s(:long) %></td>
+          <td><%= flight.departure_date.strftime("%m/%d/%y") %></td>
+          <td><%= flight.departure_time.to_formatted_s(:time) %></td>
+          <td><button class="button is-small is-primary">Book flight</button>
         </tr>
       <% end %>
     </tbody>
   </table>
+<% elsif params.empty? %>
+  <article class="message is-info">
+    <div class="message-body">
+      <p>Search for a flight above!</p>
+    </div>
+  </article>
 <% else %>
-  <p>No flights found! Try a different search.</p>
+  <article class="message is-danger">
+    <div class="message-body">
+      <p>No flights found!</p>
+    </div>
+  </article>
 <% end %>
