@@ -2,25 +2,26 @@
   <table class="table is-striped is-fullwidth is-hoverable">
     <thead>
       <tr>
+        <th></th>
         <th>From</th>
         <th>To</th>
         <th>Date</th>
         <th>Time</th>
-        <th>Book</th>
       </tr>
     </thead>
     <tbody>
       <% flights.each do |flight| %>
         <tr>
+          <td class="is-narrow"><input type="radio" name="flight"></td>
           <td><%= flight.from_airport.code %></td>
           <td><%= flight.to_airport.code %></td>
           <td><%= flight.departure_date.strftime("%m/%d/%y") %></td>
           <td><%= flight.departure_time.to_formatted_s(:time) %></td>
-          <td><button class="button is-small is-primary">Book flight</button>
         </tr>
       <% end %>
     </tbody>
   </table>
+  <button class="button is-primary">Book flight</button>
 <% elsif params.empty? %>
   <article class="message is-info">
     <div class="message-body">
