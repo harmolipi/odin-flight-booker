@@ -8,6 +8,8 @@
 
 Airport.destroy_all
 Flight.destroy_all
+Passenger.destroy_all
+Booking.destroy_all
 
 DURATIONS = {
   SFO: {
@@ -21,12 +23,16 @@ DURATIONS = {
 Airport.create([{ code: 'SFO' }, { code: 'NYC' }])
 
 20.times do
+  flight_letter = [*'A'..'Z'].sample
+  flight_digits = Array.new(4) { [*'0'..'9'].sample }.join
+  flight_number = flight_letter + flight_digits
   departure = Airport.all.sample
   arrival = departure == Airport.first ? Airport.last : Airport.first
   Flight.create(
     from_airport: departure,
     to_airport: arrival,
     duration: DURATIONS.dig(departure, arrival),
-    departure: DateTime.now + rand(7)
+    departure: DateTime.now + rand(7),
+    flight_number: flight_number
   )
 end
