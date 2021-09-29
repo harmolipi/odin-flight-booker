@@ -20,14 +20,13 @@ DURATIONS = {
 
 Airport.create([{ code: 'SFO' }, { code: 'NYC' }])
 
-10.times do
+20.times do
   departure = Airport.all.sample
   arrival = departure == Airport.first ? Airport.last : Airport.first
   Flight.create(
     from_airport: departure,
     to_airport: arrival,
     duration: DURATIONS.dig(departure, arrival),
-    departure_date: DateTime.now + rand(7),
-    departure_time: Time.now + rand(60 * 60 * 24)
+    departure: DateTime.now + rand(7)
   )
 end
