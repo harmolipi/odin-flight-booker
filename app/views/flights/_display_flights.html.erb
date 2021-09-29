@@ -3,6 +3,7 @@
     <thead>
       <tr>
         <th></th>
+        <th>Flight number</th>
         <th>From</th>
         <th>To</th>
         <th>Date</th>
@@ -13,6 +14,7 @@
       <% flights.each do |flight| %>
         <tr>
           <td class="is-narrow"><input type="radio" name="flight"></td>
+          <td><%= flight.flight_number %></td>
           <td><%= flight.from_airport.code %></td>
           <td><%= flight.to_airport.code %></td>
           <td><%= flight.departure.strftime("%m/%d/%y") %></td>
