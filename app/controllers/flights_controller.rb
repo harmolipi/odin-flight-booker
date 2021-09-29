@@ -1,7 +1,19 @@
 class FlightsController < ApplicationController
   def index
-    @params = params[:flight] || {}
-    @flights = params[:flight] ? Flight.where(from_airport: flight_params[:from_airport], to_airport: flight_params[:to_airport], departure_date: flight_params[:departure_date]).order(:departure_date, :departure_time) : {}
+    if params[:flight]
+      @params = params[:flight]
+      beginning_date = Date.parse(flight_params[:departure]).beginning_of_day
+      end_date = Date.parse(flight_params[:departure]).end_of_day
+      @flights = Flight.where(
+        from_airport: flight_params[:from_airport],
+        to_airport: flight_params[:to_airport],
+        departure: (beginning_date)..(end_date)
+      ).order(:departure)
+      @passengers = params[:passengers]
+    else
+      @params = {}
+      @flights = {}
+    end
     @flight = Flight.new
     @airport_options = Airport.all.map { |airport| [airport.code, airport.id] }
   end
@@ -9,6 +21,6 @@ class FlightsController < ApplicationController
   private
 
   def flight_params
-    params.require(:flight).permit(:from_airport, :to_airport, :departure_date)
+    params.require(:flight).permit(:from_airport, :to_airport, :departure, :passengers)
   end
 end
