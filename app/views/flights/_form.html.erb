@@ -1,21 +1,31 @@
 <%= simple_form_for flight, method: :get, url: flights_path, defaults: { wrapper: false } do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  
   <div class="field is-grouped is-grouped-multiline">
-    <div class="control">
+    <div class="control is-expanded">
       <%= f.label :from_airport, "From", required: true, class: "label" %>
-      <div class="select">
-        <%= f.input :from_airport, collection: airport_options, required: true, label: false, selected: params[:from_airport] || airport_options.first, input_html: { class: "input" } %>
+      <div class="select is-fullwidth">
+        <%= f.association :from_airport, label_method: :code, prompt: 'Airport', selected: params[:from_airport_id] || '', disabled: '', label: false %>
       </div>
     </div>
 
-    <div class="control">
+    <div class="control is-expanded">
       <%= f.label :to_airport, "To", class: "label" %>
-      <div class="select">
-        <%= f.input :to_airport, collection: airport_options, required: true, label: false, selected: params[:to_airport] || airport_options.second, input_html: { class: "input" } %>
+      <div class="select is-fullwidth">
+        <%= f.association :to_airport, label_method: :code, prompt: 'Airport', selected: params[:to_airport_id] || '', disabled: '', label: false %>
       </div>
     </div>
 
     <div class="control">
-      <%= f.input :departure_date, html5: true, input_html: { class: "input", value: params[:departure_date] }, label_html: { class: "label" } %>
+      <%= f.input :departure, html5: true, as: :date, input_html: { class: "input", value: params[:departure], value: Date.current }, label_html: { class: "label" }, required: false %>
+    </div>
+
+    <div class="control is-expanded">
+    <%= f.label :passengers, class: "label" %>
+      <div class="select is-fullwidth">
+        <%= select_tag :passengers, options_for_select(1..4, passengers), input_html: { class: "input is-fullwidth" }, required: true %>
+      </div>
     </div>
   </div>
 
