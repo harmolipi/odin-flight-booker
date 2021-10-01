@@ -7,6 +7,7 @@ class FlightsController < ApplicationController
     end
 
     @flight = Flight.new
+    @booking = Booking.new
     @airport_options = Airport.all.map { |airport| [airport.code, airport.id] }
     if params[:flight]
       @params = flight_params
