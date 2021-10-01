@@ -1,0 +1,54 @@
+<div class="panel is-info">
+  <p class="panel-heading">Choose your flight:</p>
+  <% if !flights.empty? %>
+    <div class="panel-block">
+      <div class="tile is-ancestor">
+        <div class="tile is-parent">
+          <div class="tile is-child is-1 container"></div>
+          <div class="tile is-child container"><strong>Flight number</strong></div>
+          <div class="tile is-child container"><strong>From</strong></div>
+          <div class="tile is-child"><strong>To</strong></div>
+          <div class="tile is-child"><strong>Date</strong></div>
+          <div class="tile is-child"><strong>Time</strong></div>
+        </div>
+      </div>
+    </div>
+    <%= form_with(url: bookings_path, method: :get) do |f| %>
+      <%= f.hidden_field :passenger_count, value: params[:passengers] %>
+
+      <% flights.each do |flight| %>
+        <%= f.label "flight_id_#{flight.id}", flight.flight_number, class: "panel-block" do %>
+          <div class="tile is-ancestor radio">
+            <div class="tile is-parent">
+              <div class="tile is-child is-1"><%= f.radio_button :flight_id, flight.id %></div>
+              <div class="tile is-child"><%= flight.flight_number %></div>
+              <div class="tile is-child"><%= flight.from_airport.code %></div>
+              <div class="tile is-child"><%= flight.to_airport.code %></div>
+              <div class="tile is-child"><%= flight.departure.strftime("%m/%d/%y") %></div>
+              <div class="tile is-child"><%= flight.departure.to_formatted_s(:time) %></div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+      <div class="panel-block">
+        <%= f.submit 'Book flight', class: 'button is-primary' %>
+      </div>
+    <% end %>
+  <% elsif params[:flight].nil? %>
+    <div class="box">
+      <article class="message is-info">
+        <div class="message-body">
+          <p>Search for a flight above!</p>
+        </div>
+      </article>
+    </div>
+  <% else %>
+    <div class="box">
+      <article class="message is-danger">
+        <div class="message-body">
+          <p>No flights found!</p>
+        </div>
+      </article>
+    </div>
+  <% end %>
+</div>
