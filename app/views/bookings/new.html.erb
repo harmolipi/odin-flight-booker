@@ -1,0 +1,61 @@
+<h2 class="title is-2">Enter your passenger information</h2>
+
+<div class="columns">
+  <div class="column"></div>
+  <div class="column is-four-fifths">
+    <section class="section">
+      <div class="card">
+        <div class="card-content">
+          <div class="content">
+            <table class="table is-fullwidtj">
+              <thead>
+                <tr>
+                  <th>Flight number</th>
+                  <th>From</th>
+                  <th>To</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><%= Flight.find(params[:flight_id]).flight_number %></td>
+                  <td><%= Flight.find(params[:flight_id]).from_airport.code %></td>
+                  <td><%= Flight.find(params[:flight_id]).to_airport.code %></td>
+                  <td><%= Flight.find(params[:flight_id]).departure.strftime("%m/%d/%y") %></td>
+                  <td><%= Flight.find(params[:flight_id]).departure.to_formatted_s(:time) %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <section class="section">
+            <%= simple_form_for @booking do |f| %>
+              <%= f.simple_fields_for :passengers, @booking.passengers, defaults: { wrapper: false, input_html: { class: "input" }, label_html: { class: "label" } } do |passenger_attributes| %>
+                <div class="box">
+                  <h3 class="title is-3">Passenger <%= passenger_attributes.index + 1 %></h3>
+                  <div class="field">
+                    <div class="control">
+                      <%= passenger_attributes.input :name, placeholder: "John Smith" %>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <div class="control">
+                      <%= passenger_attributes.input :email, placeholder: "email@internet.com" %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+              <%= f.hidden_field :flight_id, value: params[:flight_id] %>
+              <div class="field">
+                <div class="control">
+                  <%= f.submit class: "button is-primary" %>
+                </div>
+              </div>
+            <% end %>
+          </section>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="column"></div>
+</div>
