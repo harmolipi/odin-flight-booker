@@ -18,7 +18,7 @@
     </div>
 
     <div class="control">
-      <%= f.input :departure, html5: true, as: :date, input_html: { class: "input", value: params[:departure], value: Date.current }, label_html: { class: "label" }, required: false %>
+      <%= f.input :departure, html5: true, as: :date, input_html: { class: "input", value: params[:departure] || Date.current }, label_html: { class: "label" }, required: false %>
     </div>
 
     <div class="control is-expanded">
