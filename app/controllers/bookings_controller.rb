@@ -2,8 +2,6 @@ class BookingsController < ApplicationController
   def new
     @booking = Flight.find(params[:flight_id]).bookings.new
     params[:passenger_count].to_i.times { @booking.passengers.new }
-    # @booking.passengers.build
-    # binding.pry
   end
 
   def create
@@ -12,7 +10,7 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to booking_path(@booking)
     else
-      render root_path
+      redirect_back fallback_location: root_path, alert: "Booking failed! Please try again."
     end
   end
 
