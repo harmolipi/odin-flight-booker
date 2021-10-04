@@ -20,19 +20,29 @@ DURATIONS = {
   }
 }.freeze
 
-Airport.create([{ code: 'SFO' }, { code: 'NYC' }])
-
-20.times do
+def create_random_flight(departure_airport, arrival_airport, day)
   flight_letter = [*'A'..'Z'].sample
   flight_digits = Array.new(4) { [*'0'..'9'].sample }.join
   flight_number = flight_letter + flight_digits
-  departure = Airport.all.sample
-  arrival = departure == Airport.first ? Airport.last : Airport.first
+
+  departure = DateTime.now + day.days + rand((DateTime.now + day.days).end_of_day - (DateTime.now + day.days))
+  
   Flight.create(
-    from_airport: departure,
-    to_airport: arrival,
-    duration: DURATIONS.dig(departure, arrival),
-    departure: DateTime.now + rand(7),
+    from_airport: departure_airport,
+    to_airport: arrival_airport,
+    duration: DURATIONS.dig(departure_airport.code.to_sym, arrival_airport.code.to_sym),
+    departure: departure,
     flight_number: flight_number
   )
 end
+
+Airport.create([{ code: 'SFO' }, { code: 'JFK' }])
+
+31.times do |day|
+  rand(2..4).times do
+    create_random_flight(Airport.first, Airport.last, day)
+    create_random_flight(Airport.last, Airport.first, day)
+  end
+end
+
+
