@@ -1,42 +1,40 @@
-<h2 class="title is-2">Enter your passenger information</h2>
 
-<div class="columns">
-  <div class="column"></div>
-  <div class="column is-four-fifths">
-    <section class="section">
-      <div class="card">
-        <div class="card-content">
-          <div class="content">
+<section class="section">
+  <h1 class="title is-size-1-tablet is-size-3-mobile">Enter your passenger information</h1>
+  <div class="columns is-centered">
+    <div class="column is-three-fifths">
+      <section class="section">
+        <div class="card">
+          <div class="card-content">
             <%= render "flights/flights_table", flights: [Flight.find(params[:flight_id])] %>
-          </div>
-          <section class="section">
-            <%= simple_form_for @booking do |f| %>
-              <%= f.simple_fields_for :passengers, @booking.passengers, defaults: { wrapper: false, input_html: { class: "input" }, label_html: { class: "label" } } do |passenger_attributes| %>
-                <div class="box">
-                  <h3 class="title is-3">Passenger <%= passenger_attributes.index + 1 %></h3>
-                  <div class="field">
-                    <div class="control">
-                      <%= passenger_attributes.input :name, placeholder: "John Smith" %>
+            <section class="section">
+              <%= simple_form_for @booking do |f| %>
+                <%= f.simple_fields_for :passengers, @booking.passengers, defaults: { wrapper: false, input_html: { class: "input" }, label_html: { class: "label" } } do |passenger_attributes| %>
+                  <div class="box">
+                    <h3 class="title is-size-3-tablet is-size-5-mobile">Passenger <%= passenger_attributes.index + 1 %></h3>
+                    <div class="field">
+                      <div class="control">
+                        <%= passenger_attributes.input :name, placeholder: "John Smith" %>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <div class="control">
+                        <%= passenger_attributes.input :email, placeholder: "email@internet.com" %>
+                      </div>
                     </div>
                   </div>
-                  <div class="field">
-                    <div class="control">
-                      <%= passenger_attributes.input :email, placeholder: "email@internet.com" %>
-                    </div>
+                <% end %>
+                <%= f.hidden_field :flight_id, value: params[:flight_id] %>
+                <div class="field">
+                  <div class="control">
+                    <%= f.submit class: "button is-primary" %>
                   </div>
                 </div>
               <% end %>
-              <%= f.hidden_field :flight_id, value: params[:flight_id] %>
-              <div class="field">
-                <div class="control">
-                  <%= f.submit class: "button is-primary" %>
-                </div>
-              </div>
-            <% end %>
-          </section>
+            </section>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </div>
-  <div class="column"></div>
-</div>
+</section>

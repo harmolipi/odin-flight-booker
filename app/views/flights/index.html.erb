@@ -1,18 +1,18 @@
-<h2 class="title is-2">Select your flight</h2>
 
-<div class="columns">
-  <div class="column"></div>
-  <div class="column is-three-fifths">
-    <section class="section">
-      <div class="card">
-        <div class="card-content">
-          <%= render "search_form", flight: @flight, airport_options: @airport_options, params: @params, passengers: @passengers %>
+<section class="section">
+  <h1 class="title is-size-1-tablet is-size-3-mobile">Select your flight</h1>
+  <div class="columns is-centered">
+    <div class="column is-three-fifths">
+      <section class="section">
+        <div class="card">
+          <div class="card-content">
+            <%= render "search_form", flight: @flight, airport_options: @airport_options, params: @params, passengers: @passengers %>
+          </div>
         </div>
-      </div>
-    </section>
-    <section class="section">
-      <%= render "select_flight_form", flights: @flights, booking: @booking %>
-    </section>
+      </section>
+      <section class="section">
+        <%= render "select_flight_form", flights: @flights, booking: @booking %>
+      </section>
+    </div>
   </div>
-  <div class="column"></div>
-</div>
+</section>
