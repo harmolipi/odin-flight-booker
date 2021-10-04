@@ -1,4 +1,5 @@
-<table class="table is-striped is-fullwidth">
+<div class="table-container">
+  <table class="table is-striped is-fullwidth is-hidden-touch">
     <thead>
       <tr>
         <th>Flight number</th>
@@ -20,3 +21,22 @@
       <% end %>
     </tbody>
   </table>
+</div>
+<div class="panel is-primary is-hidden-desktop">
+  <div class="panel-heading">
+    <strong><%= flights.count == 1 ? "Flight #{flights.first.flight_number}" : "Flights" %></strong>
+  </div>
+  <% flights.each do |flight| %>
+    <div class="panel-block">
+      <div class="control is-size-5">
+        <%= flight.from_airport.code %> to <%= flight.to_airport.code %>
+      </div>
+    </div>
+    <div class="panel-block">
+      <div class="control is-size-5">
+        <%= flight.departure.strftime("%m/%d/%y") %> at <%= flight.departure.to_formatted_s(:time) %>
+      </div>
+    </div>
+  <% end %>
+</div>
+

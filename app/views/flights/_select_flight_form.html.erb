@@ -1,7 +1,7 @@
 <div class="panel is-info">
   <p class="panel-heading">Choose your flight:</p>
   <% if !flights.empty? %>
-    <div class="panel-block">
+    <div class="panel-block is-hidden-touch">
       <div class="tile is-ancestor">
         <div class="tile is-parent">
           <div class="tile is-child is-1 container"></div>
@@ -21,11 +21,12 @@
           <div class="tile is-ancestor radio">
             <div class="tile is-parent">
               <div class="tile is-child is-1"><%= f.radio_button :flight_id, flight.id %></div>
-              <div class="tile is-child"><%= flight.flight_number %></div>
-              <div class="tile is-child"><%= flight.from_airport.code %></div>
-              <div class="tile is-child"><%= flight.to_airport.code %></div>
-              <div class="tile is-child"><%= flight.departure.strftime("%m/%d/%y") %></div>
-              <div class="tile is-child"><%= flight.departure.to_formatted_s(:time) %></div>
+              <div class="tile is-child is-hidden-desktop"><strong><%= flight.flight_number %></strong> | <%= flight.from_airport.code %> to <%= flight.to_airport.code %> | <%= flight.departure.strftime("%m/%d/%y") %> at <%= flight.departure.to_formatted_s(:time) %></div>
+              <div class="tile is-child is-hidden-touch"><%= flight.flight_number %></div>
+              <div class="tile is-child is-hidden-touch"><%= flight.from_airport.code %></div>
+              <div class="tile is-child is-hidden-touch"><%= flight.to_airport.code %></div>
+              <div class="tile is-child is-hidden-touch"><%= flight.departure.strftime("%m/%d/%y") %></div>
+              <div class="tile is-child is-hidden-touch"><%= flight.departure.to_formatted_s(:time) %></div>
             </div>
           </div>
         <% end %>
