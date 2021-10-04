@@ -2,7 +2,7 @@
 <section class="section">
   <h1 class="title is-size-1-tablet is-size-3-mobile">Select your flight</h1>
   <div class="columns is-centered">
-    <div class="column is-three-fifths">
+    <div class="column is-four-fifths">
       <section class="section">
         <div class="card">
           <div class="card-content">
@@ -10,9 +10,11 @@
           </div>
         </div>
       </section>
-      <section class="section">
-        <%= render "select_flight_form", flights: @flights, booking: @booking %>
-      </section>
+      <% if !@flights.empty? || !params[:flight].nil? %>
+        <section class="section">
+          <%= render "select_flight_form", flights: @flights, booking: @booking %>
+        </section>
+      <% end %>
     </div>
   </div>
 </section>
