@@ -5,8 +5,8 @@
         <th>Flight number</th>
         <th>From</th>
         <th>To</th>
-        <th>Date</th>
-        <th>Time</th>
+        <th>Departure</th>
+        <th>Arrival</th>
       </tr>
     </thead>
     <tbody>
@@ -15,8 +15,8 @@
           <td><%= flight.flight_number %></td>
           <td><%= flight.from_airport.code %></td>
           <td><%= flight.to_airport.code %></td>
-          <td><%= flight.departure.strftime("%m/%d/%y") %></td>
-          <td><%= flight.departure.to_formatted_s(:time) %></td>
+          <td><%= flight.departure.strftime("%m/%d/%y") %> at <%= flight.departure.to_formatted_s(:time) %></td>
+          <td><%= (flight.departure + flight.duration.seconds).strftime("%m/%d/%y") %> at <%= (flight.departure + flight.duration.seconds).to_formatted_s(:time) %></td>
         </tr>
       <% end %>
     </tbody>
@@ -34,7 +34,12 @@
     </div>
     <div class="panel-block">
       <div class="control is-size-5">
-        <%= flight.departure.strftime("%m/%d/%y") %> at <%= flight.departure.to_formatted_s(:time) %>
+        <strong>Departure:</strong> <%= flight.departure.strftime("%m/%d/%y") %> at <%= flight.departure.to_formatted_s(:time) %>
+      </div>
+    </div>
+    <div class="panel-block">
+      <div class="control is-size-5">
+        <strong>Arrival:</strong> <%= (flight.departure + flight.duration.seconds).strftime("%m/%d/%y") %> at <%= (flight.departure + flight.duration.seconds).to_formatted_s(:time) %>
       </div>
     </div>
   <% end %>
