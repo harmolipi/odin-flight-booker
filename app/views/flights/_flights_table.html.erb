@@ -1,0 +1,22 @@
+<table class="table is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <th>Flight number</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Date</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% flights.each do |flight| %>
+        <tr>
+          <td><%= flight.flight_number %></td>
+          <td><%= flight.from_airport.code %></td>
+          <td><%= flight.to_airport.code %></td>
+          <td><%= flight.departure.strftime("%m/%d/%y") %></td>
+          <td><%= flight.departure.to_formatted_s(:time) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
