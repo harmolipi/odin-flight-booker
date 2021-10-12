@@ -28,6 +28,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'bulma-rails', '~> 0.9.1'
 gem 'simple_form', '~> 5.1'
+gem 'figaro', '~> 1.2'
 
 group :production do
   gem 'pg'
@@ -54,7 +55,8 @@ group :development do
   gem 'better_errors', '~> 2.9', '>= 2.9.1'
   gem 'guard', '~> 2.18'
   gem 'guard-livereload', '~> 2.5', '>= 2.5.2'
-  gem 'letter_opener', '~> 1.7'
+  # gem 'letter_opener', '~> 1.7'
+  gem 'letter_opener', path: 'lib/letter_opener' # Temp to open emails on ChromeOS
 end
 
 group :test do
