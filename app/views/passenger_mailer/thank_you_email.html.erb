@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Your booking has been confirmed, <%= @passenger.name %>!</h1>
+    <p>Here is your information for flight <strong><%= @flight.flight_number %></strong>:</p>
+      <ul>
+        <li><%= @flight.from_airport.code %> to <%= @flight.to_airport.code %></li>
+        <li>Departure: <%= @flight.departure.strftime("%m/%d/%y") %> at <%= @flight.departure.to_formatted_s(:time) %></li>
+        <li>Arrival: <%= (@flight.departure + @flight.duration.seconds).strftime("%m/%d/%y") %> at <%= (@flight.departure + @flight.duration.seconds).to_formatted_s(:time) %>
+      </ul>
+    <p>Hope you book with us again soon!</p>
+  </body>
+</html>

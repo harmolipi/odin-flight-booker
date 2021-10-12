@@ -1,0 +1,8 @@
+Your booking has been confirmed, <%= @passenger.name %>!
+===============================================
+
+Here is your information for flight <%= @flight.flight_number %>:
+- <%= @flight.from_airport.code %> to <%= @flight.to_airport.code %>
+- Departure: <%= @flight.departure.strftime("%m/%d/%y") %> at <%= @flight.departure.to_formatted_s(:time) %>
+- Arrival: <%= (@flight.departure + @flight.duration.seconds).strftime("%m/%d/%y") %> at <%= (@flight.departure + @flight.duration.seconds).to_formatted_s(:time) %>
+Hope you book with us again soon!
