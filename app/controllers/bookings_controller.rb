@@ -6,11 +6,14 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
-    
+
     if @booking.save
+      @booking.passengers.each do |passenger|
+        PassengerMailer.with(passenger: passenger).thank_you_email.deliver_later
+      end
       redirect_to booking_path(@booking)
     else
-      redirect_back fallback_location: root_path, alert: "Booking failed! Please try again."
+      redirect_back fallback_location: root_path, alert: 'Booking failed! Please try again.'
     end
   end
 
