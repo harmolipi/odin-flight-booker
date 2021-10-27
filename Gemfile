@@ -56,7 +56,7 @@ group :development do
   gem 'guard', '~> 2.18'
   gem 'guard-livereload', '~> 2.5', '>= 2.5.2'
   # gem 'letter_opener', '~> 1.7'
-  gem 'letter_opener', path: 'lib/letter_opener' # Temp to open emails on ChromeOS
+  gem 'letter_opener', git: 'https://github.com/Kulgar/letter_opener' # Using fork to open emails on ChromeOS
 end
 
 group :test do

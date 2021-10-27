@@ -1,5 +1,6 @@
-PATH
-  remote: lib/letter_opener
+GIT
+  remote: https://github.com/Kulgar/letter_opener
+  revision: 5f5ebd68d70020fbd891db1a38d895cdf10d1981
   specs:
     letter_opener (1.7.0)
       launchy (~> 2.2)
