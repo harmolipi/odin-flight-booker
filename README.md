@@ -21,7 +21,9 @@ Initially I tried to do this with a table, but I don't believe it's possible to 
 
 #### Part 2
 
-The Odin Project had me dust this one off again for [part 2](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby-on-rails/lessons/sending-confirmation-emails). This entailed adding confirmation emails to the system, so that each passenger on the booking would receive an email with their flight information when their booking is created. This was a good exercise in learning about ActionMailer, and how to send emails from a Rails app.
+The Odin Project had me dust this one off again for [part 2](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby-on-rails/lessons/sending-confirmation-emails/). This entailed adding confirmation emails to the system, so that each passenger on the booking would receive an email with their flight information when their booking is created. This was a good exercise in learning about ActionMailer, and how to send emails from a Rails app.
+
+I initially had some trouble setting up emails to be sent through [SendGrid](https://sendgrid.com/) because of an error saying that my account had been banned when I tried to add the Heroku add-on. I was able to add the add-on to my [odin-facebook](https://github.com/harmolipi/odin-facebook) project though, and once I was set up with an account, I found I could use SendGrid without the Heroku add-on. So I came back to this project and simply generated a new API key in SendGrid and updated my settings here, and it all works.
 
 God bless.
 
